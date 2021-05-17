@@ -3,7 +3,7 @@ on: push
 
 env:
   GODOT_VERSION: 3.3
-  EXPORT_NAME: creeps
+  EXPORT_NAME: game
 
 jobs:
   export-web:
