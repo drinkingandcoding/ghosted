@@ -3,7 +3,7 @@ on: push
 
 env:
   GODOT_VERSION: 3.3
-  EXPORT_NAME: game
+  EXPORT_NAME: "Dodge The Creeps"
 
 jobs:
   export-web:
