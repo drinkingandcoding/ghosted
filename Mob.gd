@@ -1,14 +1,11 @@
 extends RigidBody2D
 
-#warning-ignore-all:unused_class_variable
-export var min_speed = 150
-export var max_speed = 250
-
 func _ready():
+	print("ready")
+	
+func setup(mobType):
 	$AnimatedSprite.playing = true
-	var mob_types = $AnimatedSprite.frames.get_animation_names()
-	$AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
-
+	$AnimatedSprite.animation = mobType.name
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

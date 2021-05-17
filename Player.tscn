@@ -1,27 +1,24 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://art/playerGrey_walk1.png" type="Texture" id=2]
-[ext_resource path="res://art/playerGrey_walk2.png" type="Texture" id=3]
-[ext_resource path="res://art/playerGrey_up1.png" type="Texture" id=4]
-[ext_resource path="res://art/playerGrey_up2.png" type="Texture" id=5]
+[ext_resource path="res://art/player_horizontal.png" type="Texture" id=3]
+[ext_resource path="res://art/player_vertical.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "up",
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 26.1701
-height = 14.822
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 25, 25 )
 
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 0.501961, 1, 1, 1, 0 )
@@ -46,6 +43,7 @@ scale_curve = SubResource( 6 )
 color_ramp = SubResource( 4 )
 
 [node name="Player" type="Area2D"]
+position = Vector2( -12.1846, 6.35719 )
 z_index = 10
 script = ExtResource( 1 )
 __meta__ = {
@@ -58,14 +56,15 @@ frames = SubResource( 1 )
 animation = "right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="Trail" type="Particles2D" parent="."]
+position = Vector2( 0.529785, -0.264877 )
 z_index = -1
 amount = 10
 speed_scale = 2.0
 local_coords = false
 process_material = SubResource( 7 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

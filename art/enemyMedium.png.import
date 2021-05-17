@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemyFlyingAlt_1.png-559f599b16c69b112c1b53f6332e9489.stex"
+path="res://.import/enemyMedium.png-fd0c9b866c3ef0cce510c5d58dea8a19.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemyFlyingAlt_1.png"
-dest_files=[ "res://.import/enemyFlyingAlt_1.png-559f599b16c69b112c1b53f6332e9489.stex" ]
+source_file="res://art/enemyMedium.png"
+dest_files=[ "res://.import/enemyMedium.png-fd0c9b866c3ef0cce510c5d58dea8a19.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
