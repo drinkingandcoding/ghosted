@@ -5,16 +5,16 @@
 [ext_resource path="res://art/enemySlow.png" type="Texture" id=3]
 [ext_resource path="res://art/enemyMedium.png" type="Texture" id=4]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": false,
-"name": "enemySlow",
-"speed": 0.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": false,
 "name": "enemyFast",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "enemySlow",
 "speed": 0.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -23,9 +23,8 @@ animations = [ {
 "speed": 0.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 35.2706
-height = 23.3281
+[sub_resource type="CircleShape2D" id=2]
+radius = 50.0
 
 [node name="Mob" type="RigidBody2D" groups=[
 "mobs",
@@ -38,8 +37,7 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 3 )
+frames = SubResource( 1 )
 animation = "enemyFast"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -47,6 +45,6 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-rect = Rect2( -25, -25, 50, 50 )
+rect = Rect2( -50, -50, 100, 100 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
