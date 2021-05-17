@@ -24,7 +24,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 24.9937
+radius = 50.0
 
 [node name="Mob" type="RigidBody2D" groups=[
 "mobs",
@@ -37,7 +37,6 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "enemyFast"
 
@@ -46,6 +45,6 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-rect = Rect2( -25, -25, 50, 50 )
+rect = Rect2( -50, -50, 100, 100 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
