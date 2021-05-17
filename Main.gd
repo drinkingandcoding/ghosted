@@ -74,9 +74,8 @@ func _on_MobTimer_timeout():
 	# Create a Mob instance and add it to the scene.
 	var mob = mob_scene.instance()
 	var mobType = get_mob_props(mob, mob_spawn_location)
-	print(mobType)
+	mob.setup(mobType)
 	add_child(mob)
-	$Mob.setup(mobType) # this needs to be initialized with add_child
 
 func _on_ScoreTimer_timeout():
 	score += 1

@@ -1,7 +1,4 @@
 extends RigidBody2D
-
-func _ready():
-	print("ready")
 	
 func setup(mobType):
 	$AnimatedSprite.playing = true
