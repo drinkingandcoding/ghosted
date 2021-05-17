@@ -49,6 +49,10 @@ func start(pos):
 	playerDisabled = false
 
 
+func update_player_name(playerName):
+	$Label.text = playerName
+
+
 func _on_Player_body_entered(_body):
 	hide() # Player disappears after being hit.
 	emit_signal("hit")

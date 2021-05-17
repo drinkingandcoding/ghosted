@@ -41,9 +41,6 @@ color_ramp = SubResource( 4 )
 position = Vector2( -12.1846, 6.35719 )
 z_index = 10
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -59,5 +56,15 @@ speed_scale = 2.0
 local_coords = false
 process_material = SubResource( 7 )
 texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -26.1724
+margin_top = -50.3358
+margin_right = 26.8276
+margin_bottom = -36.3358
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
