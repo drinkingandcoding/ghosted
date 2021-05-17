@@ -11,7 +11,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 50, 50 )
 
 [sub_resource type="Gradient" id=3]
