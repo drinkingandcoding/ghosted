@@ -18,7 +18,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 25, 25 )
+extents = Vector2( 50, 50 )
 
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 0.501961, 1, 1, 1, 0 )
@@ -51,7 +51,6 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "right"
 
