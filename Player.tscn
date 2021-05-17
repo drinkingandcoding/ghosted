@@ -1,19 +1,13 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://art/player_horizontal.png" type="Texture" id=3]
-[ext_resource path="res://art/player_vertical.png" type="Texture" id=4]
+[ext_resource path="res://art/player_horizontal.png" type="Texture" id=6]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
+"frames": [  ],
 "loop": true,
-"name": "right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "up",
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -52,8 +46,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 1 )
-animation = "right"
+frames = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 8 )
@@ -65,6 +58,6 @@ amount = 10
 speed_scale = 2.0
 local_coords = false
 process_material = SubResource( 7 )
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

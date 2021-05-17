@@ -5,11 +5,11 @@
 [ext_resource path="res://art/enemySlow.png" type="Texture" id=3]
 [ext_resource path="res://art/enemyMedium.png" type="Texture" id=4]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": false,
-"name": "enemyMedium",
+"name": "enemySlow",
 "speed": 0.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -17,14 +17,15 @@ animations = [ {
 "name": "enemyFast",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": false,
-"name": "enemySlow",
+"name": "enemyMedium",
 "speed": 0.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 24.9937
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 35.2706
+height = 23.3281
 
 [node name="Mob" type="RigidBody2D" groups=[
 "mobs",
@@ -38,7 +39,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 1 )
+frames = SubResource( 3 )
 animation = "enemyFast"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
