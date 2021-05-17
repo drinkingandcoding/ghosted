@@ -1,16 +1,21 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://art/player_horizontal.png" type="Texture" id=6]
+[ext_resource path="res://art/player_horizontal.png" type="Texture" id=3]
+[ext_resource path="res://art/player_vertical.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [  ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "default",
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "up",
 "speed": 5.0
 } ]
-
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 50, 50 )
@@ -41,12 +46,16 @@ color_ramp = SubResource( 4 )
 position = Vector2( -12.1846, 6.35719 )
 z_index = 10
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+animation = "right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="Trail" type="Particles2D" parent="."]
 position = Vector2( 0.529785, -0.264877 )
@@ -55,13 +64,13 @@ amount = 10
 speed_scale = 2.0
 local_coords = false
 process_material = SubResource( 7 )
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -26.1724
-margin_top = -50.3358
-margin_right = 26.8276
-margin_bottom = -36.3358
+margin_left = -23.7203
+margin_top = -69.3461
+margin_right = 29.2797
+margin_bottom = -55.3461
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
