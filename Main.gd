@@ -25,29 +25,57 @@ func new_game():
 	$Music.play()
 
 
-func _on_MobTimer_timeout():
-	# Choose a random location on Path2D.
-	var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
-	mob_spawn_location.offset = randi()
+func get_mob_props(mobInstance, spawn):
+	
+	var id = randi() % 3 + 1
+	var name
+	var speed
 
-	# Create a Mob instance and add it to the scene.
-	var mob = mob_scene.instance()
-	add_child(mob)
+	if(id == 1):
+		name = "enemySlow"
+		speed = 100
+	if(id == 2):
+		name = "enemyMedium"
+		speed = 300
+	if(id == 3):
+		name = "enemyFast"
+		speed = 500
 
 	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
+	var direction = spawn.rotation + PI / 2
 
 	# Set the mob's position to a random location.
-	mob.position = mob_spawn_location.position
+	mobInstance.position = spawn.position
 
 	# Add some randomness to the direction.
 	direction += rand_range(-PI / 4, PI / 4)
-	mob.rotation = direction
+	mobInstance.rotation = direction
 
 	# Choose the velocity.
-	var velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
-	mob.linear_velocity = velocity.rotated(direction)
+	var velocity = Vector2(speed, 0)
+	mobInstance.linear_velocity = velocity.rotated(direction)
+	
+	return {
+		"name": name,
+		"speed": speed,
+		"direction": direction,
+		"position": mobInstance.position,
+		"rotation": mobInstance.rotation,
+		"velocity": velocity,
+		"linear_velocity": mobInstance.linear_velocity
+	}
 
+func _on_MobTimer_timeout():	
+	
+	# Choose a random location on Path2D.
+	var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
+	mob_spawn_location.offset = randi()
+	
+	# Create a Mob instance and add it to the scene.
+	var mob = mob_scene.instance()
+	var mobType = get_mob_props(mob, mob_spawn_location)
+	mob.setup(mobType)
+	add_child(mob)
 
 func _on_ScoreTimer_timeout():
 	score += 10
