@@ -50,8 +50,10 @@ func _on_MobTimer_timeout():
 
 
 func _on_ScoreTimer_timeout():
-	score += 1
+	score += 10
 	$HUD.update_score(score)
+	if score % 100 == 0:
+		print("growin")
 
 
 func _on_StartTimer_timeout():
