@@ -2,6 +2,7 @@ extends Node
 
 export(PackedScene) var mob_scene
 var score
+var highScores
 
 func _ready():
 	randomize()
@@ -13,17 +14,43 @@ func game_over():
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()
+	save_score(score)
 
 
 func new_game():
 	get_tree().call_group("mobs", "queue_free")
 	score = 0
+	highScores = load_scores()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HellSpawn.start()
 	$HUD.update_score(score)
+	$HUD.show_high_scores(highScores)
 	$HUD.show_message("Get Ready")
 	$Music.play()
+
+
+func save_score(score):
+	var file = File.new()
+	if score > get_player_high_score($Player/Label.text):
+		file.open("scores.json", File.WRITE)
+		highScores[$Player/Label.text] = score
+		file.store_string(JSON.print(highScores))
+
+	file.close()
+
+
+func load_scores():
+	var file = File.new()
+	if file.file_exists("scores.json"):
+		file.open("scores.json", File.READ)
+		var json_records = JSON.parse(file.get_as_text())
+		file.close()
+		return json_records.result
+
+
+func get_player_high_score(name):
+	return highScores[name] if highScores.has(name) else 0
 
 
 func _on_MobTimer_timeout():	

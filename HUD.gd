@@ -27,6 +27,19 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 
 
+# func score_sort(a, b):
+
+
+func show_high_scores(highScores):
+	$ScoreList.text = """
+	Top Ghosts
+	-------------------
+	Mr.Ghost\t1000
+	"""
+	# get top 3 from high scores and add them here
+	$ScoreList.show()
+
+
 func _on_StartButton_pressed():
 	$StartButton.hide()
 	$NameButton.hide()
