@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://art/inky2.png" type="Texture" id=2]
@@ -8,17 +8,9 @@
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "right",
+"name": "move",
 "speed": 5.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 50, 50 )
 
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 0.501961, 1, 1, 1, 0 )
@@ -43,7 +35,7 @@ scale_curve = SubResource( 6 )
 color_ramp = SubResource( 4 )
 
 [node name="Player" type="Area2D"]
-position = Vector2( -12.1846, 6.35719 )
+position = Vector2( -15.3687, 6.16989 )
 z_index = 10
 script = ExtResource( 1 )
 __meta__ = {
@@ -52,10 +44,10 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "right"
+animation = "move"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 5.91699, 44.022, 38.507, 44.3966, 45.4371, 35.7808, 45.0625, -10.1074, 39.6308, -9.3582, 40.0054, -28.4627, 35.1356, -29.7738, 34.0118, -34.4562, 29.3293, -35.2054, 28.7675, -39.7006, 19.9644, -40.0752, 20.1517, -45.5069, -13.9367, -45.6942, -14.6859, -40.4498, -24.2381, -39.5133, -24.9873, -35.7673, -28.546, -35.3927, -30.5538, -30.7688, -34.3523, -29.2119, -34.7269, -21.158, -34.9142, -10.482, -39.222, -10.6693, -39.4093, 34.0951, -32.292, 43.0855 )
 
 [node name="Trail" type="Particles2D" parent="."]
 position = Vector2( 0.529785, -0.264877 )
