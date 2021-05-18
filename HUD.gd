@@ -36,6 +36,7 @@ func show_high_scores(highScores):
 	for player in highScores:
 		top.append([player, highScores[player]])
 	top.sort_custom(self, "sort_score")
+	$ScoreList.text = "Top Ghosts\n----------------------\n"
 	for score in top.slice(0, 2):
 		$ScoreList.text += score[0] + "\t" + str(score[1]) + "\n"
 	$ScoreList.show()
