@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Mob.gd" type="Script" id=1]
 [ext_resource path="res://art/orbBig.png" type="Texture" id=2]
@@ -7,16 +7,8 @@
 [ext_resource path="res://art/pac2.png" type="Texture" id=5]
 [ext_resource path="res://art/pac1.png" type="Texture" id=6]
 
-[sub_resource type="PhysicsMaterial" id=1]
-bounce = 1.0
-
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "enemyMedium",
-"speed": 2.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "enemyFast",
@@ -26,15 +18,20 @@ animations = [ {
 "loop": true,
 "name": "enemySlow",
 "speed": 2.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "enemyMedium",
+"speed": 2.0
 } ]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 50.0
 
 [node name="Mob" type="RigidBody2D" groups=[
 "mobs",
 ]]
-physics_material_override = SubResource( 1 )
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource( 1 )
 __meta__ = {
@@ -42,12 +39,12 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "enemyFast"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 rect = Rect2( -50, -50, 100, 100 )

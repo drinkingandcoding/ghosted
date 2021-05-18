@@ -7,5 +7,3 @@ var topSpeed = 25
 func _process(delta):
 	var velocity = Vector2(speed, 0).rotated(self.rotation)
 	self.linear_velocity = velocity.rotated(self.rotation)
-	add_force(Vector2.ZERO, velocity)
-#	self.position += Vector2(1 ,0).rotated(self.rotation)

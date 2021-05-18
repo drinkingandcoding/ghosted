@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/House In a Forest Loop.ogg" type="AudioStream" id=5]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=6]
-[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://HellSpawn.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
@@ -62,9 +61,6 @@ stream = ExtResource( 5 )
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
-[node name="Obstacle" parent="." instance=ExtResource( 7 )]
-position = Vector2( 2034.97, 568.446 )
-
 [node name="HellSpawn" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2050, 150 )
 
@@ -74,5 +70,3 @@ position = Vector2( 2050, 150 )
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="name_change" from="HUD" to="Player" method="update_player_name"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
-
-[editable path="Obstacle"]
