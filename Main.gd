@@ -41,13 +41,13 @@ func new_round():
 
 
 func save_score(score):
-	var file = File.new()
-	if score > get_player_high_score($Player/Label.text):
-		file.open("scores.json", File.WRITE)
-		highScores[$Player/Label.text] = score
-		file.store_string(JSON.print(highScores))
-
-	file.close()
+	if $Player/Label.text != "":
+		var file = File.new()
+		if score > get_player_high_score($Player/Label.text):
+			file.open("scores.json", File.WRITE)
+			highScores[$Player/Label.text] = score
+			file.store_string(JSON.print(highScores))
+			file.close()
 
 
 func load_scores():
