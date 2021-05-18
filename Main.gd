@@ -20,7 +20,7 @@ func new_game():
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("bullets", "queue_free")
 	score = 0
-	$Player.start($StartPosition.position)
+	resetPlayer()
 	$StartTimer.start()
 	$HellSpawn.start()
 	$HellSpawn2.start()
@@ -28,6 +28,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Music.play()
+	
 
 func new_round():
 	$HUD.show_message("Next Round")
@@ -68,3 +69,12 @@ func _zoom(direction):
 
 	$Player/Camera2D.zoom.x += scaler
 	$Player/Camera2D.zoom.y += scaler
+
+func resetCamera():
+	$Player/Camera2D.zoom.x = 1
+	$Player/Camera2D.zoom.y = 1
+
+func resetPlayer():
+	$Player.start($StartPosition.position)
+	resetCamera()
+	$Player.reset_scale_player()
