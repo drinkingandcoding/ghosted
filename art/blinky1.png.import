@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemySlow.png-1a2bad2ec7fba2bdeb51391658750768.stex"
+path="res://.import/blinky1.png-f991ca950eb6f07b0b22d6a0eca3ecd7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemySlow.png"
-dest_files=[ "res://.import/enemySlow.png-1a2bad2ec7fba2bdeb51391658750768.stex" ]
+source_file="res://art/blinky1.png"
+dest_files=[ "res://.import/blinky1.png-f991ca950eb6f07b0b22d6a0eca3ecd7.stex" ]
 
 [params]
 

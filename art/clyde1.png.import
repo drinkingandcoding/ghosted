@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemyFast.png-730cd1c1dc8ad0f9c254cb8143bdfcae.stex"
+path="res://.import/clyde1.png-ed99f1d72be8e9e17c8d11af54e6c9de.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemyFast.png"
-dest_files=[ "res://.import/enemyFast.png-730cd1c1dc8ad0f9c254cb8143bdfcae.stex" ]
+source_file="res://art/clyde1.png"
+dest_files=[ "res://.import/clyde1.png-ed99f1d72be8e9e17c8d11af54e6c9de.stex" ]
 
 [params]
 
