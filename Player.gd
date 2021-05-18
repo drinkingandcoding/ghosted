@@ -44,7 +44,7 @@ func _process(delta):
 func start(pos):
 	position = pos
 	show()
-	$CollisionShape2D.disabled = false
+	$CollisionPolygon2D.disabled = false
 	playerDisabled = false
 
 
@@ -56,7 +56,7 @@ func _on_Player_body_entered(_body):
 	hide() # Player disappears after being hit.
 	emit_signal("hit")
 	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
+	$CollisionPolygon2D.set_deferred("disabled", true)
 
 func scale_player(direction):
 	print("scale player")
@@ -70,13 +70,13 @@ func scale_player(direction):
 	
 	$AnimatedSprite.scale.x += scaler
 	$AnimatedSprite.scale.y += scaler
-	$CollisionShape2D.scale.x += scaler
-	$CollisionShape2D.scale.y += scaler
+	$CollisionPolygon2D.scale.x += scaler
+	$CollisionPolygon2D.scale.y += scaler
 	speed = speed*.75
 
 func reset_scale_player():
 	$AnimatedSprite.scale.x = 1
 	$AnimatedSprite.scale.y = 1
-	$CollisionShape2D.scale.x = 1
-	$CollisionShape2D.scale.y = 1
+	$CollisionPolygon2D.scale.x = 1
+	$CollisionPolygon2D.scale.y = 1
 	speed = 400
