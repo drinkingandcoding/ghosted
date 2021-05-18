@@ -27,16 +27,17 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 
 
-# func score_sort(a, b):
+func sort_score(a, b):
+	return a[1] > b[1]
 
 
 func show_high_scores(highScores):
-	$ScoreList.text = """
-	Top Ghosts
-	-------------------
-	Mr.Ghost\t1000
-	"""
-	# get top 3 from high scores and add them here
+	var top = []
+	for player in highScores:
+		top.append([player, highScores[player]])
+	top.sort_custom(self, "sort_score")
+	for score in top.slice(0, 2):
+		$ScoreList.text += score[0] + "\t" + str(score[1]) + "\n"
 	$ScoreList.show()
 
 
