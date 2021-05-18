@@ -73,3 +73,10 @@ func scale_player(direction):
 	$CollisionShape2D.scale.x += scaler
 	$CollisionShape2D.scale.y += scaler
 	speed = speed*.75
+
+func reset_scale_player():
+	$AnimatedSprite.scale.x = 1
+	$AnimatedSprite.scale.y = 1
+	$CollisionShape2D.scale.x = 1
+	$CollisionShape2D.scale.y = 1
+	speed = 400
