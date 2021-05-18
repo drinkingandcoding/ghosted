@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 84.5351
 
-[node name="Bullet" type="StaticBody2D"]
+[node name="Bullet" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
