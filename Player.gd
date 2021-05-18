@@ -36,11 +36,9 @@ func _process(delta):
 		# position.y = clamp(position.y, 0, screen_size.y)
 
 		if velocity.x != 0:
-			$AnimatedSprite.animation = "right"
-			$AnimatedSprite.flip_v = false
-			$AnimatedSprite.flip_h = velocity.x < 0
+			$AnimatedSprite.animation = "move"
 		elif velocity.y != 0:
-			$AnimatedSprite.animation = "up"
+			$AnimatedSprite.animation = "move"
 
 
 func start(pos):
@@ -60,5 +58,18 @@ func _on_Player_body_entered(_body):
 	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
 
-func _scale_player():
+func scale_player(direction):
 	print("scale player")
+	
+	var scaler
+	
+	if direction == "up":
+		scaler = .3
+	if direction == "down":
+		scaler = -.3
+	
+	$AnimatedSprite.scale.x += scaler
+	$AnimatedSprite.scale.y += scaler
+	$CollisionShape2D.scale.x += scaler
+	$CollisionShape2D.scale.y += scaler
+	speed = speed*.75

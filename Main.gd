@@ -1,6 +1,7 @@
 extends Node
 
 export(PackedScene) var mob_scene
+
 var score
 
 func _ready():
@@ -25,6 +26,11 @@ func new_game():
 	$HUD.show_message("Get Ready")
 	$Music.play()
 
+func new_round():
+	$HUD.show_message("Next Round")
+	$Player.scale_player("up")
+	_zoom("out")
+
 
 func _on_MobTimer_timeout():	
 	# Choose a random location on Path2D.
@@ -38,12 +44,24 @@ func _on_MobTimer_timeout():
 	add_child(mob)
 
 func _on_ScoreTimer_timeout():
-	score += 10
+	score += 1
 	$HUD.update_score(score)
-	if score % 100 == 0:
-		print("growin")
+	if score % 10 == 0:
+		new_round()
 
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
+
+func _zoom(direction):
+
+	var scaler
+
+	if direction == "out":
+		scaler = 0.25
+	if direction == "in":
+		scaler = -0.25
+
+	$Player/Camera2D.zoom.x += scaler
+	$Player/Camera2D.zoom.y += scaler
