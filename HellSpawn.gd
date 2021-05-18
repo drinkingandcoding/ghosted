@@ -9,6 +9,7 @@ func _ready():
 	$Timer.set_wait_time(timerCount)
 	$Timer.start()
 	disabled = true
+	hide()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,3 +38,4 @@ func _on_Timer_timeout():
 
 func start():
 	disabled = false
+	show()
