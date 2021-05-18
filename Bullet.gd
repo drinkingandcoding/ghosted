@@ -7,3 +7,7 @@ var topSpeed = 25
 func _process(delta):
 	var velocity = Vector2(speed, 0).rotated(self.rotation)
 	self.linear_velocity = velocity.rotated(self.rotation)
+
+
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	queue_free()
