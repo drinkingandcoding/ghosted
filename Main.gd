@@ -23,7 +23,6 @@ func new_game():
 	get_tree().call_group("bullets", "queue_free")
 	score = 0
 	highScores = load_scores()
-	$Player.start($StartPosition.position)
 	resetPlayer()
 	$StartTimer.start()
 	$HellSpawn.start()
