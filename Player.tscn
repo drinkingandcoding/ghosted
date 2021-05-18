@@ -38,7 +38,7 @@ scale_curve = SubResource( 6 )
 color_ramp = SubResource( 4 )
 
 [node name="Player" type="Area2D"]
-position = Vector2( -0.0101767, -0.0109663 )
+position = Vector2( -12.1846, 6.35719 )
 z_index = 10
 script = ExtResource( 1 )
 __meta__ = {
