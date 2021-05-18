@@ -21,6 +21,8 @@ func new_game():
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HellSpawn.start()
+	$HellSpawn2.start()
+	$HellSpawn3.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Music.play()

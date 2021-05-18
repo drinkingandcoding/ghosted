@@ -64,6 +64,12 @@ stream = ExtResource( 6 )
 [node name="HellSpawn" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2050, 150 )
 
+[node name="HellSpawn2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 3207.44, 1326.53 )
+
+[node name="HellSpawn3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 415.779, 96.1665 )
+
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
