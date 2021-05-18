@@ -10,14 +10,14 @@ func show_message(text):
 
 
 func update_message(playerName):
-	$MessageLabel.text = "Dodge the\nCreeps, " + playerName + "!"
+	$MessageLabel.text = "Dodge the Creeps,\n" + playerName + "!"
 	$MessageLabel.show()
 
 
 func show_game_over():
 	show_message("Game Over")
 	yield($MessageTimer, "timeout")
-	$MessageLabel.text = "Dodge the\nCreeps"
+	$MessageLabel.text = "Dodge the Creeps"
 	$MessageLabel.show()
 	yield(get_tree().create_timer(1), "timeout")
 	$StartButton.show()

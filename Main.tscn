@@ -25,7 +25,7 @@ margin_left = -5.1748
 margin_top = -4.37842
 margin_right = 1434.83
 margin_bottom = 355.622
-color = Color( 0.219608, 0.372549, 0.380392, 1 )
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
