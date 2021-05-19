@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=6]
 [ext_resource path="res://Obstacle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://HellSpawn.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Powerup.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -17,6 +18,7 @@ _data = {
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 mob_scene = ExtResource( 2 )
+powerup_scene = ExtResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -40,6 +42,9 @@ current = true
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="PowerupTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
@@ -50,6 +55,12 @@ one_shot = true
 curve = SubResource( 1 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+rotation = 0.00133564
+
+[node name="PowerupPath" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="PowerupSpawnLocation" type="PathFollow2D" parent="PowerupPath"]
 rotation = 0.00133564
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
@@ -124,8 +135,10 @@ margin_top = -2498.0
 margin_right = 2912.0
 margin_bottom = 2711.0
 
+[connection signal="bonus_points" from="Player" to="." method="_on_Player_bonus_points"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
+[connection signal="timeout" from="PowerupTimer" to="." method="_on_PowerupTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="name_change" from="HUD" to="Player" method="update_player_name"]

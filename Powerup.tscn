@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://art/cherry.png" type="Texture" id=1]
+[ext_resource path="res://Powerup.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "cherry",
+"speed": 5.0
+} ]
+
+[node name="Powerup" type="RigidBody2D" groups=[
+"mobs",
+]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 0.890196, 0, 1 )
+frames = SubResource( 1 )
+animation = "cherry"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -50, -50, 100, 100 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -0.835938, 37.8301, 30.0684, 38.5793, 33.4398, 33.5223, 35.8746, 11.0464, 27.4462, 3.92905, 22.0145, -1.50262, 19.7669, -6.74699, 23.7002, -11.8041, 33.0652, -12.366, 32.5033, -26.4134, 46.5507, -28.0991, 47.1126, -40.0862, 42.4301, -47.0163, 28.9446, -47.3908, 28.0081, -42.7084, 23.1383, -37.464, 11.1512, -37.6513, 8.52901, -32.4069, -1.58513, -32.5942, -2.89622, -28.4737, -7.0168, -23.6039, -11.6993, -18.3595, -38.2957, -17.423, -39.2322, -12.7406, -42.6036, -12.5533, -42.9782, -8.80727, -46.5369, -7.30888, -47.848, 20.2241, -43.1655, 22.2843, -39.9814, 27.3414, -37.9211, 30.7128, -33.8005, 32.3985, -11.512, 32.5858, -6.08031, 35.5826 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
