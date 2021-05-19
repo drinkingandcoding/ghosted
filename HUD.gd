@@ -28,6 +28,10 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 
 
+func update_time(time):
+	$TimeLabel.text = str(time)
+
+
 func sort_score(a, b):
 	return a[1] > b[1]
 
