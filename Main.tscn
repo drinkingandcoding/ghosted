@@ -12,7 +12,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3359.31, 4.48682, 0, 0, 0, 0, 5124.72, 1.98688, 0, 0, 0, 0, 5124.97, 2866.61, 0, 0, 0, 0, -3.11609, 2856.9, 0, 0, 0, 0, 0.814606, 1436.88, 0, 0, 0, 0, -0.777222, 1080, 0, 0, 0, 0, 0, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3359.31, 4.48682, 0, 0, 0, 0, 5124.72, 1.98688, 0, 0, 0, 0, 8519.31, 9.71875, 0, 0, 0, 0, 8526.04, 4658.19, 0, 0, 0, 0, 9.43799, 4658.19, 0, 0, 0, 0, -3.11609, 2856.9, 0, 0, 0, 0, 0.814606, 1436.88, 0, 0, 0, 0, -0.777222, 1080, 0, 0, 0, 0, 0, 0 )
 }
 
 [node name="Main" type="Node"]
@@ -23,10 +23,10 @@ powerup_scene = ExtResource( 9 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -535.0
-margin_top = -527.0
-margin_right = 3871.0
-margin_bottom = 2154.0
+margin_left = -834.0
+margin_top = -1146.0
+margin_right = 7940.0
+margin_bottom = 4756.0
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -75,65 +75,53 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [node name="HellSpawn" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2050, 150 )
+position = Vector2( 3152.92, 479.981 )
 
-[node name="HellSpawn2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 3207.44, 1326.53 )
+[node name="HellSpawn4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 6538.31, 817.875 )
+
+[node name="HellSpawn5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1062.39, 3845.1 )
+
+[node name="HellSpawn7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 7419.57, 2627.48 )
+
+[node name="HellSpawn9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4802.7, 4060.37 )
+
+[node name="HellSpawn10" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4553.8, 2035.49 )
 
 [node name="HellSpawn3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 415.779, 96.1665 )
+position = Vector2( 792.926, 1591.29 )
 
-[node name="LeftWall" parent="." instance=ExtResource( 7 )]
-collision_mask = 0
+[node name="TopWall" parent="." groups=[
+"enemies",
+] instance=ExtResource( 7 )]
+position = Vector2( 4254.33, -20.3374 )
+scale = Vector2( 135, 1 )
+physics_material_override = null
 
-[node name="CollisionShape2D" parent="LeftWall" index="0"]
-position = Vector2( -60.097, 1429.54 )
-
-[node name="ColorRect" parent="LeftWall" index="1"]
-margin_left = -64.0
-margin_top = -9.0
-margin_right = 0.0
-margin_bottom = 2880.0
-
-[node name="RightWall" parent="." instance=ExtResource( 7 )]
-collision_mask = 0
-
-[node name="CollisionShape2D" parent="RightWall" index="0"]
-position = Vector2( 5155.85, 1429.54 )
-
-[node name="ColorRect" parent="RightWall" index="1"]
-margin_left = 5111.0
-margin_top = 4.0
-margin_right = 5175.0
-margin_bottom = 2911.0
-
-[node name="TopWall" parent="." instance=ExtResource( 7 )]
-position = Vector2( 2650.51, 0 )
+[node name="LeftWall" parent="." groups=[
+"enemies",
+] instance=ExtResource( 7 )]
+position = Vector2( -44.3145, 2309.97 )
 rotation = 1.5708
-collision_mask = 0
+scale = Vector2( 78, 1 )
 
-[node name="CollisionShape2D" parent="TopWall" index="0"]
-position = Vector2( -54.1766, 102.338 )
+[node name="BottomWall" parent="." groups=[
+"enemies",
+] instance=ExtResource( 7 )]
+position = Vector2( 4254.33, 4691.07 )
+scale = Vector2( 135, 1 )
 
-[node name="ColorRect" parent="TopWall" index="1"]
-margin_left = -53.0
-margin_top = -2528.0
-margin_right = -3.0
-margin_bottom = 2711.0
-
-[node name="BottomWall" parent="." instance=ExtResource( 7 )]
-position = Vector2( 2650.51, 0 )
+[node name="RightWall" parent="." groups=[
+"enemies",
+] instance=ExtResource( 7 )]
+position = Vector2( 8564.33, 2327.96 )
 rotation = 1.5708
-collision_mask = 0
-
-[node name="CollisionShape2D" parent="BottomWall" index="0"]
-position = Vector2( 2912.47, 84.3584 )
-
-[node name="ColorRect" parent="BottomWall" index="1"]
-margin_left = 2862.0
-margin_top = -2498.0
-margin_right = 2912.0
-margin_bottom = 2711.0
+scale = Vector2( 78, 1 )
+physics_material_override = null
 
 [connection signal="bonus_points" from="Player" to="." method="_on_Player_bonus_points"]
 [connection signal="hit" from="Player" to="." method="game_over"]
@@ -143,8 +131,3 @@ margin_bottom = 2711.0
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="name_change" from="HUD" to="Player" method="update_player_name"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
-
-[editable path="LeftWall"]
-[editable path="RightWall"]
-[editable path="TopWall"]
-[editable path="BottomWall"]
