@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
@@ -6,11 +6,12 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://art/House In a Forest Loop.ogg" type="AudioStream" id=5]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=6]
+[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://HellSpawn.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3359.31, 4.48682, 0, 0, 0, 0, 3361.43, 1439, 0, 0, 0, 0, 0.814606, 1436.88, 0, 0, 0, 0, -0.777222, 1080, 0, 0, 0, 0, 0, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3359.31, 4.48682, 0, 0, 0, 0, 5124.72, 1.98688, 0, 0, 0, 0, 5124.97, 2866.61, 0, 0, 0, 0, -3.11609, 2856.9, 0, 0, 0, 0, 0.814606, 1436.88, 0, 0, 0, 0, -0.777222, 1080, 0, 0, 0, 0, 0, 0 )
 }
 
 [node name="Main" type="Node"]
@@ -20,19 +21,20 @@ mob_scene = ExtResource( 2 )
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -5.1748
-margin_top = -4.37842
-margin_right = 1434.83
-margin_bottom = 355.622
+margin_left = -535.0
+margin_top = -527.0
+margin_right = 3871.0
+margin_bottom = 2154.0
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 959.139, 543.91 )
+position = Vector2( 2560, 1272 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 0, -5.99341 )
 current = true
 
 [node name="MobTimer" type="Timer" parent="."]
@@ -53,7 +55,7 @@ rotation = 0.00133564
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="StartPosition" type="Position2D" parent="."]
-position = Vector2( 960.659, 542.758 )
+position = Vector2( 2560, 1272 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -70,9 +72,66 @@ position = Vector2( 3207.44, 1326.53 )
 [node name="HellSpawn3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 415.779, 96.1665 )
 
+[node name="LeftWall" parent="." instance=ExtResource( 7 )]
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="LeftWall" index="0"]
+position = Vector2( -60.097, 1429.54 )
+
+[node name="ColorRect" parent="LeftWall" index="1"]
+margin_left = -64.0
+margin_top = -9.0
+margin_right = 0.0
+margin_bottom = 2880.0
+
+[node name="RightWall" parent="." instance=ExtResource( 7 )]
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="RightWall" index="0"]
+position = Vector2( 5155.85, 1429.54 )
+
+[node name="ColorRect" parent="RightWall" index="1"]
+margin_left = 5111.0
+margin_top = 4.0
+margin_right = 5175.0
+margin_bottom = 2911.0
+
+[node name="TopWall" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2650.51, 0 )
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="TopWall" index="0"]
+position = Vector2( -54.1766, 102.338 )
+
+[node name="ColorRect" parent="TopWall" index="1"]
+margin_left = -53.0
+margin_top = -2528.0
+margin_right = -3.0
+margin_bottom = 2711.0
+
+[node name="BottomWall" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2650.51, 0 )
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="BottomWall" index="0"]
+position = Vector2( 2912.47, 84.3584 )
+
+[node name="ColorRect" parent="BottomWall" index="1"]
+margin_left = 2862.0
+margin_top = -2498.0
+margin_right = 2912.0
+margin_bottom = 2711.0
+
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="name_change" from="HUD" to="Player" method="update_player_name"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+
+[editable path="LeftWall"]
+[editable path="RightWall"]
+[editable path="TopWall"]
+[editable path="BottomWall"]
