@@ -9,7 +9,9 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
-[node name="HellSpawn" type="Node2D"]
+[node name="HellSpawn" type="Node2D" groups=[
+"hellspawn",
+]]
 script = ExtResource( 2 )
 bullet_scene = ExtResource( 3 )
 

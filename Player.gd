@@ -12,7 +12,6 @@ func _ready():
 	playerDisabled = true
 	hide()
 
-
 func _process(delta):
 	if not playerDisabled:
 		var velocity = Vector2.ZERO # The player's movement vector.
