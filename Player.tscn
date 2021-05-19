@@ -12,27 +12,27 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 0.501961, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0.00501098, 0.5 ), 0.0, 0.0, 0, 0, Vector2( 0.994989, 0.324 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.75
-scale_curve = SubResource( 6 )
-color_ramp = SubResource( 4 )
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
 [node name="Player" type="Area2D"]
 position = Vector2( -15.3687, 6.16989 )
@@ -55,7 +55,7 @@ z_index = -1
 amount = 10
 speed_scale = 2.0
 local_coords = false
-process_material = SubResource( 7 )
+process_material = SubResource( 6 )
 texture = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]

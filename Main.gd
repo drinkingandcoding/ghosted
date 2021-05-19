@@ -7,6 +7,8 @@ var highScores
 
 func _ready():
 	randomize()
+	Network.connect("player_list_changed", self, "_on_player_list_changed")
+	$HUD/PlayerList/LocalPlayer.text = Gamestate.player_info.name
 
 
 func game_over():
@@ -30,7 +32,7 @@ func new_game():
 	$HellSpawn3.start()
 	$HUD.update_score(score)
 	$HUD.show_high_scores(highScores)
-	$HUD.show_message("Get Ready")
+	$HUD.show_message("Get Ready, " + $HUD/PlayerList/LocalPlayer.text + "!")
 	$Music.play()
 	
 
@@ -41,11 +43,11 @@ func new_round():
 
 
 func save_score(score):
-	if $Player/Label.text != "":
+	if $HUD/PlayerList/LocalPlayer.text != "":
 		var file = File.new()
-		if score > get_player_high_score($Player/Label.text):
+		if score > get_player_high_score($HUD/PlayerList/LocalPlayer.text):
 			file.open("scores.json", File.WRITE)
-			highScores[$Player/Label.text] = score
+			highScores[$HUD/PlayerList/LocalPlayer.text] = score
 			file.store_string(JSON.print(highScores))
 			file.close()
 
@@ -105,3 +107,13 @@ func resetPlayer():
 	$Player.start($StartPosition.position)
 	resetCamera()
 	$Player.reset_scale_player()
+
+func _on_player_list_changed():
+	for c in $HUD/PlayerList/BoxList.get_children():
+		c.queue_free()
+	
+	for p in Network.players:
+		if (p != Gamestate.player_info.net_id):
+			var nlabel = Label.new()
+			nlabel.text = Network.players[p].name
+			$HUD/PlayerList/BoxList.add_child(nlabel)

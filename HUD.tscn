@@ -1,13 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 2 )
 
@@ -20,10 +16,6 @@ action = "ui_select"
 
 [sub_resource type="ShortCut" id=5]
 shortcut = SubResource( 4 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 64
-font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 24
@@ -53,30 +45,15 @@ text = "Dodge the
 Creeps"
 align = 1
 
-[node name="NameButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 40.0
-margin_top = -350.0
-margin_right = 520.0
-margin_bottom = -250.0
-custom_fonts/font = SubResource( 2 )
-text = "Change Name"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="StartButton" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -90.0
-margin_top = -203.776
-margin_right = 110.0
-margin_bottom = -103.776
+margin_left = -87.3303
+margin_top = -307.894
+margin_right = 112.67
+margin_bottom = -207.894
 custom_fonts/font = SubResource( 3 )
 shortcut = SubResource( 5 )
 text = "Start"
@@ -87,22 +64,7 @@ __meta__ = {
 [node name="MessageTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="LineEdit" type="LineEdit" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -480.0
-margin_top = -350.0
-margin_bottom = -250.0
-custom_fonts/font = SubResource( 6 )
-placeholder_text = "enter name"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ScoreList" type="RichTextLabel" parent="."]
-visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -253.0
@@ -117,6 +79,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="NameButton" to="." method="_on_NameButton_pressed"]
+[node name="PlayerList" type="Panel" parent="."]
+self_modulate = Color( 0, 0, 0, 0 )
+margin_left = 1828.73
+margin_top = 213.574
+margin_right = 1915.73
+margin_bottom = 363.574
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LocalPlayer" type="Label" parent="PlayerList"]
+margin_right = 40.0
+margin_bottom = 14.0
+size_flags_vertical = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoxList" type="VBoxContainer" parent="PlayerList"]
+margin_top = 19.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]

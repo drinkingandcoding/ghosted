@@ -23,8 +23,13 @@ _global_script_class_icons={
 config/name="Dodge the Creeps"
 config/description="This is a simple game where your character must move
 and avoid the enemies for as long as possible."
-run/main_scene="res://Main.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://art/inky1.png"
+
+[autoload]
+
+Gamestate="*res://Gamestate.gd"
+Network="*res://Network.gd"
 
 [display]
 
