@@ -98,7 +98,9 @@ wait_time = 0.5
 [node name="PowerupTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="ScoreTimer" type="Timer" parent="."]
+[node name="ScoreCounter" type="Timer" parent="."]
+
+[node name="TimeCounter" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -152,7 +154,8 @@ position = Vector2( 792.926, 1591.29 )
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="PowerupTimer" to="." method="_on_PowerupTimer_timeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="timeout" from="ScoreCounter" to="." method="_on_ScoreCounter_timeout"]
+[connection signal="timeout" from="TimeCounter" to="." method="_on_TimeCounter_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="name_change" from="HUD" to="Player" method="update_player_name"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
