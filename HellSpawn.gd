@@ -24,6 +24,7 @@ func spawn_bullets():
 	b.rotation = self.rotation
 
 	get_parent().add_child(b)
+	b.add_to_group("enemies")
 	
 #	var slow = bullet_scene.instance()
 #	# Create a Mob instance and add it to the scene.

@@ -1,6 +1,7 @@
 extends Node
 
 export(PackedScene) var mob_scene
+export(PackedScene) var powerup_scene
 
 var score
 var highScores
@@ -12,6 +13,7 @@ func _ready():
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$PowerupTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()
@@ -73,6 +75,19 @@ func _on_MobTimer_timeout():
 	var mobType = mob.get_mob_props(mob, mob_spawn_location)
 	mob.setup(mobType)
 	add_child(mob)
+	mob.add_to_group("enemies")
+
+func _on_PowerupTimer_timeout():	
+	# Choose a random location on Path2D.
+	var powerup_spawn_location = get_node("PowerupPath/PowerupSpawnLocation")
+	powerup_spawn_location.offset = randi()
+	
+	# Create a Powerup instance and add it to the scene.
+	var powerup = powerup_scene.instance()
+	var powerupType = powerup.get_powerup_props(powerup, powerup_spawn_location)
+	powerup.setup(powerupType)
+	add_child(powerup)
+	powerup.add_to_group("powerups")
 
 func _on_ScoreTimer_timeout():
 	score += 1
@@ -80,9 +95,13 @@ func _on_ScoreTimer_timeout():
 	if score % 10 == 0:
 		new_round()
 
+func _on_Player_bonus_points():
+	score += 5
+	$HUD.update_score(score)
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
+	$PowerupTimer.start()
 	$ScoreTimer.start()
 
 func _zoom(direction):
