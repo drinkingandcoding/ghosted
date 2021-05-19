@@ -1,6 +1,7 @@
 extends Area2D
 
 signal hit
+signal bonus_points
 
 export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
@@ -10,7 +11,6 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	playerDisabled = true
 	hide()
-
 
 func _process(delta):
 	if not playerDisabled:
@@ -51,12 +51,20 @@ func start(pos):
 func update_player_name(playerName):
 	$Label.text = playerName
 
+func _handle_powerup():
+	print("powerup grabbed")
 
 func _on_Player_body_entered(_body):
-	hide() # Player disappears after being hit.
-	emit_signal("hit")
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionPolygon2D.set_deferred("disabled", true)
+	if _body.is_in_group("enemies"):
+		hide() # Player disappears after being hit.
+		emit_signal("hit")
+		# Must be deferred as we can't change physics properties on a physics callback.
+		$CollisionPolygon2D.set_deferred("disabled", true)
+	if _body.is_in_group("powerups"):
+		emit_signal("bonus_points")
+		_handle_powerup()
+		# hide the powerup once it is grabbed
+		_body.queue_free()
 
 func scale_player(direction):
 	print("scale player")

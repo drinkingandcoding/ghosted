@@ -1,8 +1,10 @@
 extends Node
 
 export(PackedScene) var mob_scene
+export(PackedScene) var powerup_scene
 
 var score
+var time
 var highScores
 
 func _ready():
@@ -12,8 +14,10 @@ func _ready():
 
 
 func game_over():
-	$ScoreTimer.stop()
+	$ScoreCounter.stop()
+	$TimeCounter.stop()
 	$MobTimer.stop()
+	$PowerupTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()
@@ -24,21 +28,23 @@ func new_game():
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("bullets", "queue_free")
 	score = 0
+	time = 10
 	highScores = load_scores()
 	resetPlayer()
 	$StartTimer.start()
-	$HellSpawn.start()
-	$HellSpawn2.start()
-	$HellSpawn3.start()
+	get_tree().call_group("hellspawn", "start")
 	$HUD.update_score(score)
+	$HUD.update_time(time)
 	$HUD.show_high_scores(highScores)
 	$HUD.show_message("Get Ready, " + $HUD/PlayerList/LocalPlayer.text + "!")
 	$Music.play()
 	
 
 func new_round():
+	time = 10
 	$HUD.show_message("Next Round")
 	$Player.scale_player("up")
+	$HUD.update_time(time)
 	_zoom("out")
 
 
@@ -75,22 +81,42 @@ func _on_MobTimer_timeout():
 	var mobType = mob.get_mob_props(mob, mob_spawn_location)
 	mob.setup(mobType)
 	add_child(mob)
+	mob.add_to_group("enemies")
 
-func _on_ScoreTimer_timeout():
-	score += 1
-	$HUD.update_score(score)
-	if score % 10 == 0:
+func _on_PowerupTimer_timeout():	
+	# Choose a random location on Path2D.
+	var powerup_spawn_location = get_node("PowerupPath/PowerupSpawnLocation")
+	powerup_spawn_location.offset = randi()
+	
+	# Create a Powerup instance and add it to the scene.
+	var powerup = powerup_scene.instance()
+	var powerupType = powerup.get_powerup_props(powerup, powerup_spawn_location)
+	powerup.setup(powerupType)
+	add_child(powerup)
+	powerup.add_to_group("powerups")
+
+func _on_TimeCounter_timeout():
+	time -= 1
+	$HUD.update_time(time)
+	if time == 0:
 		new_round()
 
+func _on_ScoreCounter_timeout():
+	score += 1
+	$HUD.update_score(score)
+
+func _on_Player_bonus_points():
+	score += 5
+	$HUD.update_score(score)
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
-	$ScoreTimer.start()
+	$PowerupTimer.start()
+	$ScoreCounter.start()
+	$TimeCounter.start()
 
 func _zoom(direction):
-
 	var scaler
-
 	if direction == "out":
 		scaler = 0.25
 	if direction == "in":
