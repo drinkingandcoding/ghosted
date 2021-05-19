@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://Powerup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://art/lava-64.png" type="Texture" id=10]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 64, 63.6465, 0.271751, 63.6465, 0.271751, 0, 64, 0 )
 
 [sub_resource type="TileSet" id=2]
@@ -33,17 +33,22 @@ points = PoolVector2Array( 64, 63.6465, 0.271751, 63.6465, 0.271751, 0, 64, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 1 )
+0/shape = SubResource( 3 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 1 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3359.31, 4.48682, 0, 0, 0, 0, 5124.72, 1.98688, 0, 0, 0, 0, 8519.31, 9.71875, 0, 0, 0, 0, 8526.04, 4658.19, 0, 0, 0, 0, 9.43799, 4658.19, 0, 0, 0, 0, -3.11609, 2856.9, 0, 0, 0, 0, 0.814606, 1436.88, 0, 0, 0, 0, -0.777222, 1080, 0, 0, 0, 0, 0, 0 )
+}
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -102,13 +107,13 @@ wait_time = 2.0
 one_shot = true
 
 [node name="MobPath" type="Path2D" parent="."]
-curve = null
+curve = SubResource( 1 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 rotation = 0.00133564
 
 [node name="PowerupPath" type="Path2D" parent="."]
-curve = null
+curve = SubResource( 1 )
 
 [node name="PowerupSpawnLocation" type="PathFollow2D" parent="PowerupPath"]
 rotation = 0.00133564
