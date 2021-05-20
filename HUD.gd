@@ -8,12 +8,17 @@ func show_message(text):
 	$MessageLabel.show()
 	$MessageTimer.start()
 
+func show_hint(text):
+	$HintLabel.text = text
+	$HintLabel.show()
+	$HintTimer.start()
 
 func show_game_over():
 	show_message("Game Over")
 	yield($MessageTimer, "timeout")
-	$MessageLabel.text = "Dodge the Creeps"
+	$MessageLabel.text = "Survive"
 	$MessageLabel.show()
+	
 	yield(get_tree().create_timer(1), "timeout")
 	$ScoreList.hide()
 	$StartButton.show()
@@ -49,3 +54,7 @@ func _on_StartButton_pressed():
 
 func _on_MessageTimer_timeout():
 	$MessageLabel.hide()
+
+
+func _on_HintTimer_timeout():
+	$HintLabel.hide()

@@ -7,12 +7,8 @@
 size = 64
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
-size = 24
-font_data = ExtResource( 2 )
-
 [sub_resource type="DynamicFont" id=2]
-size = 64
+size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -25,12 +21,11 @@ action = "ui_select"
 [sub_resource type="ShortCut" id=5]
 shortcut = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 64
-font_data = ExtResource( 2 )
-
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 1922.19, 960.174 ]
+}
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_right = 1.0
@@ -65,7 +60,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -1716.0
 margin_bottom = 62.0
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 2 )
 text = "Next round in:
 "
 fit_content_height = true
@@ -95,19 +90,21 @@ anchor_bottom = 0.5
 margin_top = -79.5
 margin_bottom = 79.5
 custom_fonts/font = SubResource( 1 )
-text = "Dodge the
-Creeps"
+text = "Survive"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="StartButton" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -87.3303
-margin_top = -307.894
-margin_right = 112.67
-margin_bottom = -207.894
+margin_left = -102.218
+margin_top = -445.15
+margin_right = 97.7821
+margin_bottom = -345.15
 custom_fonts/font = SubResource( 3 )
 shortcut = SubResource( 5 )
 text = "Start"
@@ -118,6 +115,10 @@ __meta__ = {
 [node name="MessageTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="HintTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="ScoreList" type="RichTextLabel" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -125,7 +126,7 @@ margin_left = -253.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 309.0
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 2 )
 text = "Top Ghosts
 ----------------------
 "
@@ -160,5 +161,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HintLabel" type="Label" parent="."]
+visible = false
+margin_left = 551.287
+margin_top = 144.386
+margin_right = 961.287
+margin_bottom = 178.386
+rect_scale = Vector2( 2, 2 )
+text = "Hint"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
+[connection signal="timeout" from="HintTimer" to="." method="_on_HintTimer_timeout"]
