@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://gui/buttonNormal.tres" type="StyleBox" id=3]
+[ext_resource path="res://gui/buttonHover.tres" type="StyleBox" id=4]
+[ext_resource path="res://gui/buttonPressed.tres" type="StyleBox" id=5]
+[ext_resource path="res://fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -21,10 +25,17 @@ action = "ui_select"
 [sub_resource type="ShortCut" id=5]
 shortcut = SubResource( 4 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 23
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 6 )
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_vertical_guides_": [ 1922.19, 960.174 ]
+"_edit_vertical_guides_": [ 1922.19, 960.174, 1668.61 ]
 }
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -101,10 +112,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -102.218
-margin_top = -445.15
-margin_right = 97.7821
-margin_bottom = -345.15
+margin_left = -49.6582
+margin_top = -466.53
+margin_right = 150.342
+margin_bottom = -366.53
+rect_scale = Vector2( 0.5, 0.5 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
 custom_fonts/font = SubResource( 3 )
 shortcut = SubResource( 5 )
 text = "Start"
@@ -123,9 +138,9 @@ one_shot = true
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -253.0
-margin_top = 10.0
+margin_top = 9.47031
 margin_right = -10.0
-margin_bottom = 309.0
+margin_bottom = 308.47
 custom_fonts/normal_font = SubResource( 2 )
 text = "Top Ghosts
 ----------------------
@@ -135,28 +150,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PlayerListLabel" type="RichTextLabel" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -253.0
+margin_top = 236.772
+margin_right = -10.0
+margin_bottom = 535.772
+custom_fonts/normal_font = SubResource( 2 )
+text = "Players
+----------------------
+"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PlayerList" type="Panel" parent="."]
 self_modulate = Color( 0, 0, 0, 0 )
-margin_left = 1828.73
-margin_top = 213.574
-margin_right = 1915.73
-margin_bottom = 363.574
+margin_left = 1668.0
+margin_top = 292.0
+margin_right = 1910.0
+margin_bottom = 442.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LocalPlayer" type="Label" parent="PlayerList"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = -0.470215
+margin_top = 8.59399
+margin_right = 40.5298
+margin_bottom = 37.594
 size_flags_vertical = 5
+custom_fonts/font = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BoxList" type="VBoxContainer" parent="PlayerList"]
-margin_top = 19.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 1.05933
+margin_top = 47.6038
+margin_right = 41.0593
+margin_bottom = 68.6038
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -170,6 +205,18 @@ margin_bottom = 178.386
 rect_scale = Vector2( 2, 2 )
 text = "Hint"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 11.2707
+margin_top = 1052.21
+margin_right = 74.2707
+margin_bottom = 1067.21
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.952941, 0.952941, 0.952941, 0.172549 )
+text = "GHOSTED"
 __meta__ = {
 "_edit_use_anchors_": false
 }

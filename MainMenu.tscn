@@ -1,8 +1,19 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://art/inky1.png" type="Texture" id=3]
+[ext_resource path="res://gui/smallButtonNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://fonts/smallButtonFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://gui/smallButtonHover.tres" type="StyleBox" id=6]
+[ext_resource path="res://gui/smallButtonPressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://gui/inputNormal.tres" type="StyleBox" id=8]
+[ext_resource path="res://gui/dropdownNormal.tres" type="StyleBox" id=9]
+[ext_resource path="res://gui/panelNormal.tres" type="StyleBox" id=10]
+[ext_resource path="res://fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -32,18 +43,45 @@ font_data = ExtResource( 2 )
 size = 24
 font_data = ExtResource( 2 )
 
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 5.0
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.262745, 0.231373, 0.65098, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="DynamicFont" id=11]
+size = 100
+font_data = ExtResource( 11 )
+
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 1790.3, 1507.02, 1510.58 ],
-"_edit_vertical_guides_": [ 746.177, 1165.0, 961.69, 452.504 ]
+"_edit_horizontal_guides_": [ 1790.3, 1507.02, 1510.58, 223.565, 257.237 ],
+"_edit_vertical_guides_": [ 812.222, 1093.73, 961.69, 468.356, 1782.35, 1390.94, 1302.27, 1479.61 ]
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = -4.41791
+margin_top = 4.41785
+margin_right = 1917.58
+margin_bottom = 1088.42
+custom_styles/panel = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="ServerOptionsTitle" type="Label" parent="."]
-margin_left = 1168.57
-margin_top = 97.3521
-margin_right = 1556.57
-margin_bottom = 127.352
+margin_left = 1101.14
+margin_top = 183.204
+margin_right = 1489.14
+margin_bottom = 213.204
 rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 1 )
 text = "Server Options"
@@ -54,30 +92,36 @@ __meta__ = {
 }
 
 [node name="Play" type="Button" parent="."]
-margin_left = 387.996
-margin_top = 807.003
-margin_right = 473.996
-margin_bottom = 840.003
-rect_scale = Vector2( 1.5, 1.5 )
+margin_left = 372.759
+margin_top = 802.27
+margin_right = 522.76
+margin_bottom = 852.27
+rect_scale = Vector2( 1.25, 1.25 )
+mouse_default_cursor_shape = 2
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PanelHost" type="Panel" parent="."]
-margin_left = 1170.74
-margin_top = 575.024
-margin_right = 1563.74
-margin_bottom = 820.024
+margin_left = 1096.24
+margin_top = 661.661
+margin_right = 1489.24
+margin_bottom = 906.661
 rect_scale = Vector2( 1.5, 1.5 )
+custom_styles/panel = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelPanel" type="Label" parent="PanelHost"]
-margin_left = 101.562
+margin_left = 106.607
 margin_top = 6.23633
-margin_right = 280.562
+margin_right = 285.607
 margin_bottom = 36.2363
 custom_fonts/font = SubResource( 2 )
 text = "Create Server"
@@ -99,18 +143,19 @@ __meta__ = {
 }
 
 [node name="ServerName" type="LineEdit" parent="PanelHost"]
-margin_left = 28.3723
-margin_top = 89.9664
-margin_right = 342.372
-margin_bottom = 113.966
+margin_left = 38.691
+margin_top = 90.7602
+margin_right = 352.691
+margin_bottom = 114.76
+custom_styles/normal = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelPort" type="Label" parent="PanelHost"]
-margin_left = 169.144
+margin_left = 175.758
 margin_top = 131.715
-margin_right = 209.144
+margin_right = 215.758
 margin_bottom = 151.715
 custom_fonts/font = SubResource( 4 )
 text = "Port"
@@ -119,31 +164,40 @@ __meta__ = {
 }
 
 [node name="ServerPort" type="LineEdit" parent="PanelHost"]
-margin_left = 160.465
-margin_top = 154.46
-margin_right = 218.465
-margin_bottom = 178.46
+margin_left = 141.72
+margin_top = 157.429
+margin_right = 251.72
+margin_bottom = 181.429
+custom_styles/normal = ExtResource( 8 )
 text = "7777"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ServerCreate" type="Button" parent="PanelHost"]
-margin_left = 146.521
-margin_top = 199.017
-margin_right = 232.521
-margin_bottom = 232.017
+margin_left = 152.453
+margin_top = 200.521
+margin_right = 329.453
+margin_bottom = 259.521
+rect_scale = Vector2( 0.5, 0.5 )
+mouse_default_cursor_shape = 2
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Create"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PanelJoin" type="Panel" parent="."]
-margin_left = 1165.78
-margin_top = 176.132
-margin_right = 1559.78
-margin_bottom = 424.132
+margin_left = 1095.4
+margin_top = 255.3
+margin_right = 1489.4
+margin_bottom = 503.299
 rect_scale = Vector2( 1.5, 1.5 )
+custom_styles/panel = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -161,10 +215,10 @@ __meta__ = {
 }
 
 [node name="LabelIP" type="Label" parent="PanelJoin"]
-margin_left = 140.145
-margin_top = 64.1022
-margin_right = 244.145
-margin_bottom = 84.1022
+margin_left = 144.349
+margin_top = 63.5416
+margin_right = 248.349
+margin_bottom = 83.5416
 custom_fonts/font = SubResource( 6 )
 text = "IP"
 align = 1
@@ -173,20 +227,21 @@ __meta__ = {
 }
 
 [node name="JoinIP" type="LineEdit" parent="PanelJoin"]
-margin_left = 133.035
-margin_top = 88.7079
-margin_right = 252.035
-margin_bottom = 112.708
+margin_left = 136.398
+margin_top = 88.9882
+margin_right = 255.398
+margin_bottom = 112.988
+custom_styles/normal = ExtResource( 8 )
 text = "127.0.0.1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelPort" type="Label" parent="PanelJoin"]
-margin_left = 138.25
-margin_top = 131.075
-margin_right = 246.25
-margin_bottom = 151.075
+margin_left = 141.894
+margin_top = 130.514
+margin_right = 249.894
+margin_bottom = 150.514
 custom_fonts/font = SubResource( 7 )
 text = "Port"
 align = 1
@@ -195,10 +250,11 @@ __meta__ = {
 }
 
 [node name="JoinPort" type="LineEdit" parent="PanelJoin"]
-margin_left = 135.416
-margin_top = 154.01
-margin_right = 247.416
-margin_bottom = 178.01
+margin_left = 139.62
+margin_top = 154.29
+margin_right = 251.62
+margin_bottom = 178.29
+custom_styles/normal = ExtResource( 8 )
 text = "7777"
 align = 1
 __meta__ = {
@@ -206,30 +262,37 @@ __meta__ = {
 }
 
 [node name="JoinButton" type="Button" parent="PanelJoin"]
-margin_left = 153.273
+margin_left = 152.134
 margin_top = 198.24
-margin_right = 230.273
-margin_bottom = 228.24
+margin_right = 329.134
+margin_bottom = 257.24
+rect_scale = Vector2( 0.5, 0.5 )
+mouse_default_cursor_shape = 2
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Join"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PanelPlayer" type="Panel" parent="."]
-margin_left = 155.991
-margin_top = 345.998
-margin_right = 545.991
-margin_bottom = 629.998
-rect_scale = Vector2( 1.5, 1.5 )
+margin_left = 124.58
+margin_top = 261.139
+margin_right = 514.58
+margin_bottom = 545.139
+rect_scale = Vector2( 1.75, 1.75 )
+custom_styles/panel = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Profile" type="Label" parent="PanelPlayer"]
-margin_left = 0.681122
-margin_top = -45.459
-margin_right = 388.682
-margin_bottom = -15.459
+margin_left = 2.7199
+margin_top = -52.4758
+margin_right = 390.721
+margin_bottom = -22.4758
 custom_fonts/font = SubResource( 1 )
 text = "Profile"
 align = 1
@@ -256,6 +319,7 @@ margin_left = 43.2176
 margin_top = 63.4977
 margin_right = 352.217
 margin_bottom = 87.4977
+custom_styles/normal = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -273,15 +337,31 @@ __meta__ = {
 }
 
 [node name="PlayerCharacter" type="Sprite" parent="PanelPlayer"]
-position = Vector2( 168.741, 204.513 )
+position = Vector2( 154.948, 205.403 )
 scale = Vector2( 0.690015, 0.603764 )
 texture = ExtResource( 3 )
 
 [node name="PlayerColorSelect" type="OptionButton" parent="PanelPlayer"]
-margin_left = 218.3
-margin_top = 198.21
-margin_right = 247.3
-margin_bottom = 218.21
+margin_left = 204.729
+margin_top = 193.204
+margin_right = 285.729
+margin_bottom = 218.204
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 9 )
+custom_styles/normal = ExtResource( 9 )
+text = "Inky"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="Label" parent="."]
+margin_left = 755.601
+margin_top = 26.0038
+margin_right = 1168.6
+margin_bottom = 205.004
+custom_fonts/font = SubResource( 11 )
+text = "GHOSTED
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
