@@ -104,6 +104,8 @@ func _on_TimeCounter_timeout():
 func _on_ScoreCounter_timeout():
 	score += 1
 	$HUD.update_score(score)
+	if score == 2:
+		$HUD.show_hint("Collect fruit for more points")
 
 func _on_Player_bonus_points():
 	score += 5
