@@ -1,0 +1,23 @@
+FROM fedora:33
+
+WORKDIR /root
+
+RUN dnf -y upgrade --setopt=install_weak_deps=False && \
+    dnf -y install --setopt=install_weak_deps=False \
+      bash bzip2 curl git make nano patch pkgconfig python-unversioned-command python3-pip unzip which xz && \
+    pip install scons==4.1.0
+
+RUN dnf install -y scons pkgconfig libX11-devel libXcursor-devel libXrandr-devel libXinerama-devel \
+    libXi-devel mesa-libGL-devel mesa-libGLU-devel alsa-lib-devel pulseaudio-libs-devel \
+    libudev-devel yasm gcc-c++ libstdc++-static xorg-x11-apps
+
+
+WORKDIR /ghosted
+
+ADD . .
+
+# RUN scons -f /root/SConstruct -j8 platform=server tools=no target=release
+RUN scons -f /root/Sconstruct platform=x11 tools=no target=release_debug bits=64
+
+CMD ["/ghosted/ghosted.x86_64"]
+

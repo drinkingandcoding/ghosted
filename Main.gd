@@ -51,20 +51,27 @@ func new_round():
 func save_score(score):
 	if $HUD/PlayerList/LocalPlayer.text != "":
 		var file = File.new()
+#		var file = $HTTPRequest.request("localhost:7777/scores.json")
 		if score > get_player_high_score($HUD/PlayerList/LocalPlayer.text):
-			file.open("scores.json", File.WRITE)
+			file.open("./scores.json", File.WRITE)
 			highScores[$HUD/PlayerList/LocalPlayer.text] = score
 			file.store_string(JSON.print(highScores))
 			file.close()
 
 
 func load_scores():
-	var file = File.new()
-	if file.file_exists("scores.json"):
-		file.open("scores.json", File.READ)
-		var json_records = JSON.parse(file.get_as_text())
-		file.close()
+	var file
+	var request = $HTTPRequest.request("localhost:7777/scores.json")
+	if request == OK:
+		var json_records = JSON.parse(request.get_as_text())
 		return json_records.result
+	else:
+		file = File.new()
+		if file.file_exists("./scores.json"):
+			file.open("./scores.json", File.READ)
+			var json_records = JSON.parse(file.get_as_text())
+			file.close()
+			return json_records.result
 
 
 func get_player_high_score(name):

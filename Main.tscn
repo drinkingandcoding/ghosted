@@ -138,6 +138,8 @@ position = Vector2( 4363.53, 1302.94 )
 [node name="HellSpawn3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1030.77, 1210.74 )
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="bonus_points" from="Player" to="." method="_on_Player_bonus_points"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
